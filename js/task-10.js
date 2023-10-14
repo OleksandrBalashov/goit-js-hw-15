@@ -1,0 +1,37 @@
+function getRandomHexColor() {
+  return `#${Math.floor(Math.random() * 16777215)
+    .toString(16)
+    .padStart(6, 0)}`;
+}
+
+const refs = {
+  input: document.querySelector('input[type="number"]'),
+  btnCreate: document.querySelector("button[data-create]"),
+  btnDestroy: document.querySelector("button[data-destroy]"),
+  root: document.querySelector("#boxes"),
+};
+
+refs.btnCreate.addEventListener("click", createBoxes);
+refs.btnDestroy.addEventListener("click", destroyBoxes);
+
+function createBoxes(amount) {
+  amount = refs.input.value;
+  let boxSize = 30;
+  const markup = [];
+  for (let i = 0; i < amount; i += 1) {
+    const div = document.createElement("div");
+    div.style.width = `${boxSize}px`;
+    div.style.height = `${boxSize}px`;
+    div.style.backgroundColor = getRandomHexColor();
+    boxSize += 10;
+
+    markup.push(div);
+  }
+
+  refs.root.append(...markup);
+}
+
+function destroyBoxes() {
+  refs.input.value = "";
+  refs.root.innerHTML = "";
+}

@@ -11,8 +11,17 @@ const refs = {
   root: document.querySelector("#boxes"),
 };
 
-refs.btnCreate.addEventListener("click", createBoxes);
-refs.btnDestroy.addEventListener("click", destroyBoxes);
+refs.btnCreate.addEventListener("click", handleCreate);
+refs.btnDestroy.addEventListener("click", handleDestroy);
+
+function handleCreate() {
+  createBoxes();
+}
+
+function handleDestroy() {
+  refs.input.value = "";
+  refs.root.innerHTML = "";
+}
 
 function createBoxes(amount) {
   amount = refs.input.value;
@@ -29,9 +38,4 @@ function createBoxes(amount) {
   }
 
   refs.root.append(...markup);
-}
-
-function destroyBoxes() {
-  refs.input.value = "";
-  refs.root.innerHTML = "";
 }

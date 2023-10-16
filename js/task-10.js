@@ -15,7 +15,8 @@ refs.btnCreate.addEventListener("click", handleCreate);
 refs.btnDestroy.addEventListener("click", handleDestroy);
 
 function handleCreate() {
-  createBoxes();
+  const amount = refs.input.value;
+  createBoxes(amount);
 }
 
 function handleDestroy() {
@@ -24,7 +25,6 @@ function handleDestroy() {
 }
 
 function createBoxes(amount) {
-  amount = refs.input.value;
   let boxSize = 30;
   const markup = [];
   for (let i = 0; i < amount; i += 1) {
